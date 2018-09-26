@@ -11,16 +11,16 @@
 		}
 		private function _meta($vars =''){
 			if($vars == null){
-				return $this->load->view("tpl/meta_null",$vars,true);
+				return $this->ci->load->view("tpl/meta_null",$vars,true);
 			}else{
-				return $this->load->view("tpl/meta",$vars,true);
+				return $this->ci->load->view("tpl/meta",$vars,true);
 			}
 		}
 		private function _css($vars=''){
 			return $this->ci->load->view("tpl/css",$vars,true);
 		}
 		private function _js($vars=''){
-			return $this->ci->load->js('tpl/js',$vars,true);
+			return $this->ci->load->view('tpl/js',$vars,true);
 		}
 		private function _footer($vars=''){
 			return $this->ci->load->view("tpl/footer",$vars,true);
@@ -29,10 +29,10 @@
 			$load = [
 				'body' => $vars,
 			];
-			return $this->load->ci->view("tpl/body",$load,true);
+			return $this->ci->load->view("tpl/body",$load,true);
 		}
 		private function _menu($vars=''){
-			return $this->load->view("tpl/menu",$vars,true);
+			return $this->ci->load->view("tpl/menu",$vars,true);
 		}
 
 		public function output($vars)
@@ -45,7 +45,7 @@
 				'footer' => $this->_footer($vars),
 				'menu'	 => $this->_menu($vars),
 			];
-			echo $this->load->view("tpl/page",$load,true);
+			echo $this->ci->load->view("tpl/page",$load,true);
 		}
 
 	}
