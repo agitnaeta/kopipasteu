@@ -1,0 +1,2 @@
+# kopipasteu
+Iseng Iseng berhadiah
