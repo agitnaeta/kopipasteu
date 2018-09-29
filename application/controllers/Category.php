@@ -33,8 +33,14 @@
         }
         private  function libCategory(){
             $base    = "/var/www/html/kopipasteu/log/";
-            $data    = shell_exec("ls  $base*.json");
-            $explode = array_filter(explode("\n",$data));
+            $data    = scandir($base);
+            foreach($data as $d){
+                $ext = substr($d,strlen($d)-5,strlen($d));
+                if($ext=='.json'){
+                    $explode[]=$base.$d;
+                }
+            }
+           
             $var     = null;
             foreach($explode as $e){
                 $filename = substr($e,strlen($base),strlen($e));
