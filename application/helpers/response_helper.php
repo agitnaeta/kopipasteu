@@ -8,7 +8,6 @@
     }
 
     function makeOut($code,$params=''){
-        header("Content-Type : 'Application/Json");
-        header("Allow-access-control : *");
-        echo json_encode(response($code,$params));
+        header('Content-Type: application/json');
+        echo json_encode(response($code,$params),JSON_PRETTY_PRINT);
     }
