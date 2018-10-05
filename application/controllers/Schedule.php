@@ -1,5 +1,5 @@
 <?php 
-    class Schedule extends ci_controlller{
+    class Schedule extends ci_controller{
         
 
         function mySchedule(){
@@ -10,9 +10,9 @@
                 die;
             } 
 
-            $jadwal = $this->model_schedule->get_field('id_user',$name)->result();
+            $jadwal = $this->model_schedule->get_field('id_user',$id_user)->result();
             if($jadwal==null){
-                makeOut(404,"Schedule not found");
+                makeOut(404,$jadwal);
             }else{
                 makeOut(1000,$jadwal);
             }
@@ -46,14 +46,14 @@
 
         private function defaultTimeStart($time){
             if($time==null){
-                $date  = new DateFormat($time);
+                $date  = new DateTime($time);
                 $date->modify('+1 day');
                 return $date->format('Y-m-d');
             }
         }
         private function defaultTimeEnd($time){
             if($time==null){
-                $date  = new DateFormat($time);
+                $date  = new DateTime($time);
                 $date->modify('+ day');
                 return $date->format('Y-m-d');
             }
@@ -74,7 +74,7 @@
                 die;
             }
 
-            $ScheduleId = $this->input->post('schedule_id');
+            $ScheduleId = $this->input->post('scheduleid');
 
 
             $schedule = $this->model_schedule->get_field('ScheduleId',$ScheduleId)->row_object();
@@ -88,34 +88,35 @@
                 'timeend'      => $this->defaultTimeEnd($this->input->post('timend')),
             ];
 
-            $this->model_schefule->insert($data);
-            makeOut(1000,'Success Copy Schedule');
+            $this->model_schedule->insert($data);
+            makeOut(1000,$data);
         }
 
         public function deleteSchedule($ScheduleId=''){
             $this->model_schedule->delete($ScheduleId);
-            makeOut(1000,'Success');
+            makeOut(1000,$ScheduleId);
         }
 
         public function updateSchedule(){
             $data =[
                 'ScheduleId'   => $this->input->post('scheduleid'),
                 'ScheduleName' => $this->defaultScheduleName($this->input->post('schedulename')),
-                'id_user'      => $id_user,
-                'destination'  => $schedule->destination,
+                'id_user'      => $this->input->post('id_user'),
+                'destination'  => $this->input->post('destination'),
                 'timestart'    => $this->defaultTimeStart($this->input->post('timestart')),
                 'timeend'      => $this->defaultTimeEnd($this->input->post('timend')),
             ];
 
 
             $this->model_schedule->update($data);
-            makeOut(1000,'Success update Schedule');
+            makeOut(1000,$data);
         }
 
         public function giveRating(){
             $data =[
                 'ScheduleId' => $this->input->post('scheduleid'),
-                'rating'     => $this->input->post('rating'),
+                'rate'     => $this->input->post('rate'),
+                'comment'     => $this->input->post('comment'),
             ];
 
 

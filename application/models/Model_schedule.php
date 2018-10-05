@@ -13,12 +13,12 @@
             $this->db->insert($this->tbl,$data);   
         }
         function update($data){
-            $this->db->where('id_user',$data['id_user'])
+            $this->db->where('ScheduleId',$data['ScheduleId'])
                      ->update($this->tbl,$data);
         }
-        function delete($id_user){
+        function delete($scheduleid){
            
-            return $this->db->where('id_user',$id_user)
+            return $this->db->where('ScheduleId',$scheduleid)
                             ->delete($this->tbl);
         }
     }
