@@ -136,5 +136,6 @@ $autoload['model'] = array(
     'model_category',
     'model_interest',
     'model_ukm',
+    'model_schedule',
     'model_user'
 );
