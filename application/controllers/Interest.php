@@ -25,7 +25,7 @@
 
         function myInterest(){
             $id_user = $this->input->post('id_user');
-            $interest = $this->model_interest->get_field('id_user',$id_user)->row_object();
+            $interest = $this->model_interest->get_field('id_user',$id_user)->result();
             if($interest==null){
                 makeOut(99,' Please save your interest first'.$id_user);
             }else{
