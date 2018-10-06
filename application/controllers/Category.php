@@ -45,7 +45,7 @@
             }
 
             try{
-                $base = $base    = "/var/www/html/kopipasteu/log/tenant/";
+                $base = "/home/agitnaeta/public_html/kopipasteu/log/tenant/";
                 $filename = $base.$id.'.json';
                 if(!@fopen($filename,'r')){
                     makeOut(404,'Detail tenant Not Found');
@@ -61,7 +61,7 @@
                     
                     $idCat=explode('/',$img['img_gallery']);
                     $c   = 'http://103.108.201.44:8080/storage/app/public/tenant/galleries/';
-                    $img = substr($img['img_gallery'],strlen($c)+strlen($idCat[count($idCat)-1]),strlen($img['img_gallery']));
+                    $img = substr($img['img_gallery'],strlen($c)+strlen($idCat[count($idCat)]),strlen($img['img_gallery']));
                   
                     
 
@@ -135,7 +135,7 @@
         {
             if($data!=null){
                 $filename = $id.'.json';
-                $base    = "/var/www/html/kopipasteu/log/tenant/";
+                $base    = "/home/agitnaeta/public_html/kopipasteu/log/tenant/";
                 $fopen = fopen($base.$filename,'w+');
                 fwrite($fopen,$data);
             }
