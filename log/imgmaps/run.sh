@@ -1,0 +1,17 @@
+mkdir -p aplikasi_game
+mkdir -p arsitektur
+mkdir -p design_interior
+mkdir -p design_produk
+mkdir -p fashion
+mkdir -p film_animasi_video
+mkdir -p fotografi
+mkdir -p graphic_design
+mkdir -p kriya
+mkdir -p kuliner
+mkdir -p maps
+mkdir -p musik
+mkdir -p penerbitan
+mkdir -p periklanan
+mkdir -p seni_pertunjukan
+mkdir -p seni_rupa
+mkdir -p televisi_radio
