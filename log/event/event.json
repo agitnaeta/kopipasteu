@@ -1,0 +1,42 @@
+{
+    "status": 200,
+    "message": "foundData",
+    "errors": [],
+    "data": [
+        {
+            "id": 39,
+            "title": "Bandung Broadway 2018",
+            "image": "http://malesnyari.com/log/event/uploads/event_news/1.png",
+            "type": "event"
+        },
+        {
+            "id": 10,
+            "title": "Design Action Bandung",
+            "image": "http://malesnyari.com/log/event/uploads/event_news/1.png",
+            "type": "event"
+        },
+        {
+            "id": 9,
+            "title": "BCH Festival",
+            "image": "http://malesnyari.com/log/event/uploads/event_news/1.png",
+            "type": "event"
+        },
+        {
+            "id": 8,
+            "title": "Bandung Design Biennale 2017",
+            "image": "http://malesnyari.com/log/event/uploads/event_news/1.png",
+            "type": "event"
+        }
+    ],
+    "count": 4,
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://malesnyari.com/log/event/api/v1/public/event/list-event",
+        "per_page": 15,
+        "prev_page_url": null,
+        "to": 4,
+        "total": 4
+    }
+}
