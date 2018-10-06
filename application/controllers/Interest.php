@@ -26,10 +26,45 @@
         function myInterest(){
             $id_user = $this->input->post('id_user');
             $interest = $this->model_interest->get_field('id_user',$id_user)->result();
+
+            $category = array();
+            foreach($interest as $i)
+            {
+                $ex=explode(",",$i->category);
+                foreach($ex as $x){
+                    if(!in_array($x,$category)){
+                        $category[]= $x;
+                    }
+                }
+            }
+
+
+            $data=array();
+            foreach($category as $cat)
+            {
+                $data[$cat]= array();
+            }
+
+            $keys = array_keys($data);
+            for ($i=0; $i <count($keys) ; $i++) { 
+                $filename   = $_SERVER['DOCUMENT_ROOT']."/log/$cat.json";
+                $fopen      = fopen($filename,"r");
+                $fread      = json_decode(fread($fopen,filesize($filename)));
+               
+                foreach($keys as $key){
+                   $values= $fread->data;
+                   foreach($values as $val)
+                   {
+                        if(count($data[$key])<=2){
+                            array_push($data[$key],$val);
+                        }
+                   }
+                }
+            }
             if($interest==null){
                 makeOut(99,' Please save your interest first'.$id_user);
             }else{
-                makeOut(1000,$interest);
+                makeOut(1000,$data);
             }
         }
     }

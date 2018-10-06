@@ -44,8 +44,11 @@
                 die;
             }
 
+            
+
             try{
                 $base = "/home/agitnaeta/public_html/kopipasteu/log/tenant/";
+                // $base = "/var/www/html/kopipasteu/log/tenant/";
                 $filename = $base.$id.'.json';
                 if(!@fopen($filename,'r')){
                     makeOut(404,'Detail tenant Not Found');
@@ -61,11 +64,11 @@
                     
                     $idCat=explode('/',$img['img_gallery']);
                     $c   = 'http://103.108.201.44:8080/storage/app/public/tenant/galleries/';
-                    $img = substr($img['img_gallery'],strlen($c)+strlen($idCat[count($idCat)]),strlen($img['img_gallery']));
+                    // $img = substr($img['img_gallery'],strlen($c)+strlen($idCat[count($idCat)-1]),strlen($img['img_gallery']));
                   
                     
 
-                    $new_url = 'http://malesnyari.com/log/tenant/category/'.$catgory_name.'/'.$img;
+                    $new_url = 'http://malesnyari.com/log/imgmaps/'.$catgory_name.'/'.$this->shuffleImage($catgory_name);
                     $arr_img[]['img_gallery']= $new_url; 
                 }
                 $galleries=array();
@@ -79,7 +82,8 @@
         }
 
         private  function libCategory(){
-            $base    = "/var/www/html/kopipasteu/log/";
+            $base    = "/home/agitnaeta/public_html/kopipasteu/log/";
+            // $base    = "/var/www/html/kopipasteu/log/";
             $data    = scandir($base);
             foreach($data as $d){
                 $ext = substr($d,strlen($d)-5,strlen($d));
@@ -164,5 +168,21 @@
              }catch(Exception $e){
                  return $e->getMessage();
              }  
+        }
+
+        function shuffleImage($catgory_name='')
+        {
+            $data = $this->libCategory();
+            foreach($data as $d){
+                $cat[]=$d['id'];
+            }
+            if(in_array($catgory_name,$cat)){
+                $base= $_SERVER['DOCUMENT_ROOT']."/kopipasteu/log/imgmaps/$catgory_name";
+                $data = scandir($base);
+                unset($data[0]);
+                unset($data[1]);
+                $val = array_values($data);
+                return  $val[rand(0,count($val)-1)];
+            }
         }
     }
