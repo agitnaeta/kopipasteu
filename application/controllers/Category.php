@@ -37,7 +37,7 @@
            }
         }
         
-        public function loadDetailTenant($id=''){
+        public function loadDetailTenant($id='',$catgory_name=''){
         
             if($id==null){
                 makeOut(99,'Failed');
@@ -53,8 +53,26 @@
                 }
                 $fopen = fopen($filename,"r");
                 $read = fread($fopen,filesize($filename));
-                $obj= json_decode($read);
-                makeOut(1000,$obj);
+                $obj= json_decode($read,true);
+                $image = $obj['galleries'];
+                unset($obj['galleries']);
+
+                foreach($image as $img){
+                    
+                    $idCat=explode('/',$img['img_gallery']);
+                    $c   = 'http://103.108.201.44:8080/storage/app/public/tenant/galleries/';
+                    $img = substr($img['img_gallery'],strlen($c)+strlen($idCat[count($idCat)-1]),strlen($img['img_gallery']));
+                  
+                    
+
+                    $new_url = 'http://malesnyari.com/log/tenant/category/'.$catgory_name.'/'.$img;
+                    $arr_img[]['img_gallery']= $new_url; 
+                }
+                $galleries=array();
+                $galleries['galleries']=$arr_img;
+               
+                $merge= (object)array_merge($obj,$galleries);
+                makeOut(1000,$merge);
             }catch(Exception $e){
                 makeOut(99,$e->getMessage());
             }
